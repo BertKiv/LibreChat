@@ -58,12 +58,13 @@ bower_components/
 # librechat.yaml
 # librechat.yml
 
-# Environment
+# Environment variables
+.env
+.env.*
+!.env.example
+!.env.test.example
 .npmrc
-#.env*
 my.secrets
-!**/.env.example
-!**/.env.test.example
 cache.json
 api/data/
 owner.yml
