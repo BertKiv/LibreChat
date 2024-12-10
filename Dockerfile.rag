@@ -1,0 +1,4 @@
+FROM ghcr.io/danny-avila/librechat-rag-api-dev:latest
+
+# Install additional dependencies
+RUN pip install langchain-huggingface sentence-transformers

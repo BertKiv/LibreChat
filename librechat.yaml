@@ -1,0 +1,121 @@
+version: 1.1.8
+
+cache: true
+
+endpoints:
+  custom:
+    - name: 'OpenAI'
+      apiKey: '${OPENAI_API_KEY}'
+      baseURL: 'https://api.openai.com/v1'
+      models:
+        default: ['gpt-4-turbo-preview', 'gpt-4', 'gpt-3.5-turbo']
+        fetch: false
+      titleModel: 'gpt-3.5-turbo'
+      summaryModel: 'gpt-3.5-turbo'
+      modelDisplayLabel: 'OpenAI'
+      promptPrefix: "Jesteś pomocnym asystentem AI. Odpowiadaj zwięźle i rzeczowo w języku polskim."
+      titlePrompt: "Stwórz krótki, zwięzły tytuł dla tej konwersacji w języku polskim (max 6 słów):"
+      summaryPrompt: "Stwórz krótkie podsumowanie tej konwersacji w języku polskim (max 2 zdania):"
+
+    - name: 'Google'
+      apiKey: '${GOOGLE_KEY}'
+      baseURL: 'https://generativelanguage.googleapis.com/v1'
+      models:
+        default: ['gemini-1.5-pro-latest', 'gemini-1.5-flash-latest']
+        fetch: false
+      titleModel: 'gemini-1.5-flash-latest'
+      summaryModel: 'gemini-1.5-pro-latest'
+      modelDisplayLabel: 'Gemini'
+      promptPrefix: "Jesteś pomocnym asystentem AI. Odpowiadaj zwięźle i rzeczowo w języku polskim."
+      titlePrompt: "Stwórz krótki, zwięzły tytuł dla tej konwersacji w języku polskim (max 6 słów):"
+      summaryPrompt: "Stwórz krótkie podsumowanie tej konwersacji w języku polskim (max 2 zdania):"
+
+    - name: 'Mistral-Light'
+      apiKey: '${MISTRAL_API_KEY}'
+      baseURL: 'https://api.mistral.ai/v1'
+      models:
+        default: ['mistral-medium', 'mistral-small', 'mistral-tiny']
+        fetch: false
+      titleModel: 'mistral-tiny'
+      summaryModel: 'mistral-small'
+      modelDisplayLabel: 'Mistral Light'
+      promptPrefix: "Jesteś pomocnym asystentem AI. Odpowiadaj zwięźle i rzeczowo w języku polskim."
+      titlePrompt: "Stwórz krótki, zwięzły tytuł dla tej konwersacji w języku polskim (max 6 słów):"
+      summaryPrompt: "Stwórz krótkie podsumowanie tej konwersacji w języku polskim (max 2 zdania):"
+
+    - name: 'HuggingFace'
+      apiKey: '${HUGGINGFACE_TOKEN}'
+      baseURL: 'https://api-inference.huggingface.co/models/speakleash/Bielik-11B-v2.3-Instruct'
+      models:
+        default: ['speakleash/Bielik-11B-v2.3-Instruct']
+        fetch: false
+      titleModel: 'speakleash/Bielik-11B-v2.3-Instruct'
+      summaryModel: 'speakleash/Bielik-11B-v2.3-Instruct'
+      modelDisplayLabel: 'Bielik'
+      headers:
+        Authorization: 'Bearer ${HUGGINGFACE_TOKEN}'
+      promptPrefix: "Jesteś pomocnym asystentem AI. Odpowiadaj zwięźle i rzeczowo w języku polskim."
+      titlePrompt: "Stwórz krótki, zwięzły tytuł dla tej konwersacji w języku polskim (max 6 słów):"
+      summaryPrompt: "Stwórz krótkie podsumowanie tej konwersacji w języku polskim (max 2 zdania):"
+
+    - name: 'StableDiffusion'
+      apiKey: '${HUGGINGFACE_TOKEN}'
+      baseURL: 'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0'
+      models:
+        default: ['stabilityai/stable-diffusion-xl-base-1.0']
+        fetch: false
+      titleConvo: false
+      modelDisplayLabel: 'Stable Diffusion'
+
+speech:
+  default:
+    tts:
+      local:
+        url: 'http://tts-pl:5002/api/tts'
+        model: 'mozilla-pl'
+    stt:
+      local:
+        url: 'http://stt:9000/asr'
+        model: 'whisper'
+        language: 'pl'
+
+  german:
+    tts:
+      local:
+        url: 'http://tts-de:5002/api/tts'
+        model: 'mozilla-de'
+    stt:
+      local:
+        url: 'http://stt:9000/asr'
+        model: 'whisper'
+        language: 'de'
+
+  english:
+    tts:
+      local:
+        url: 'http://tts-en:5002/api/tts'
+        model: 'mozilla-en'
+    stt:
+      local:
+        url: 'http://stt:9000/asr'
+        model: 'whisper'
+        language: 'en'
+
+registration:
+  socialLogin: false
+  allowedDomains: []
+
+search:
+  enabled: true
+  type: 'meilisearch'
+  meilisearch:
+    host: 'http://meilisearch:7700'
+    apiKey: 'UgV4HPYjJd23NvRO+a8r+iyyBk0emW9CduJloeEo7ns='
+    index: 'messages'
+    minTokenLen: 3
+    maxTokenLen: 20
+
+rag:
+  embeddings:
+    provider: 'huggingface'
+    model: 'sentence-transformers/all-MiniLM-L6-v2'
