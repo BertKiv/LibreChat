@@ -30,6 +30,18 @@ endpoints:
     enabled: true
     usePermission: true
     showSystemPrompt: true
+    tools:
+      - duckduckgo_search
+      - execute_code
+  custom:
+    - name: 'Vultr Cloud Inference'
+      apiKey: '${VULTR_API_KEY}'
+      baseURL: 'https://api.vultrinference.com/v1/chat/completions'
+      models:
+        default: ["llama-3.1-70b-instruct-fp8-gh200"]
+      titleConvo: true
+      titleModel: "llama-3.1-70b-instruct-fp8-gh200"
+      modelDisplayLabel: "Vultr Cloud Inference"          
 
 registration:
   socialLogin: false

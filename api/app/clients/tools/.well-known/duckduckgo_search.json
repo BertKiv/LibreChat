@@ -1,0 +1,76 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DuckDuckGo Search API",
+    "description": "Search the web using DuckDuckGo",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.duckduckgo.com"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Search DuckDuckGo",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AbstractText": {
+                      "type": "string"
+                    },
+                    "AbstractURL": {
+                      "type": "string"
+                    },
+                    "RelatedTopics": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Text": {
+                            "type": "string"
+                          },
+                          "FirstURL": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

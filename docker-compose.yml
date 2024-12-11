@@ -1,7 +1,9 @@
 services:
   api:
     container_name: LibreChat
-    image: ghcr.io/danny-avila/librechat-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: >
       /bin/sh -c "
         mkdir -p /app/api/logs &&
@@ -34,6 +36,7 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - OPENAI_FORCE_PROMPT=false
       - CONFIG_PATH=/app/librechat.yaml
+      - VULTR_API_KEY=${VULTR_API_KEY}
     networks:
       - databases
       - web
