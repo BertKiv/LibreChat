@@ -1,9 +1,10 @@
 services:
   api:
     container_name: LibreChat
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/danny-avila/librechat-dev:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     command: >
       /bin/sh -c "
         mkdir -p /app/api/logs &&
@@ -37,6 +38,8 @@ services:
       - OPENAI_FORCE_PROMPT=false
       - CONFIG_PATH=/app/librechat.yaml
       - VULTR_API_KEY=${VULTR_API_KEY}
+      - CODE_API_KEY=${CODE_API_KEY}
+      - CODE_API_URL=${CODE_API_URL}
     networks:
       - databases
       - web
@@ -88,6 +91,18 @@ services:
       - "${RAG_PORT:-8000}:${RAG_PORT:-8000}"
     networks:
       - databases
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  nginx:
+    image: nginx:alpine
+    container_name: librechat-nginx
+    volumes:
+      - ./nginx/proxy.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - api
+    networks:
+      - web
     extra_hosts:
       - host.docker.internal:host-gateway
 

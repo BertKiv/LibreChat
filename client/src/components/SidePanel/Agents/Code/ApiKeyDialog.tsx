@@ -49,6 +49,9 @@ export default function ApiKeyDialog({
             <div className="mb-4 text-center text-sm">
               {localize('com_ui_librechat_code_api_subtitle')}
             </div>
+            <div className="mb-4 text-center text-sm">
+              {localize('com_ui_librechat_code_api_local')}
+            </div>
             {/* Language Icons Stack */}
             <div className="mb-6">
               <div className="mx-auto mb-4 flex max-w-[400px] flex-wrap justify-center gap-3">

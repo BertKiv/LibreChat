@@ -1,21 +1,5 @@
 [
   {
-    "name": "Code Interpreter",
-    "pluginKey": "execute_code",
-    "description": "Execute code in a secure Firecracker VM environment. Supports Python, JavaScript, and Bash.",
-    "icon": "https://i.imgur.com/Hckuepk.png",
-    "isAuthRequired": "false",
-    "authConfig": []
-  },
-  {
-    "name": "DuckDuckGo",
-    "pluginKey": "duckduckgo_search",
-    "description": "A free search engine for finding information from the web without requiring any API keys.",
-    "icon": "https://duckduckgo.com/favicon.ico",
-    "isAuthRequired": "false",
-    "authConfig": []
-  },
-  {
     "name": "Traversaal",
     "pluginKey": "traversaal_search",
     "description": "Traversaal is a robust search API tailored for LLM Agents. Get an API key here: https://api.traversaal.ai",
@@ -154,13 +138,5 @@
         "description": "You need to provideq your API Key for Azure AI Search."
       }
     ]
-  },
-  {
-    "name": "Code Interpreter",
-    "pluginKey": "code_interpreter",
-    "description": "Execute code securely in an isolated environment. Supports Python, JavaScript, and Bash.",
-    "icon": "https://raw.githubusercontent.com/firecracker-microvm/firecracker/main/docs/images/firecracker.png",
-    "isAuthRequired": "false",
-    "authConfig": []
   }
 ]

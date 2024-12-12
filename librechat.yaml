@@ -14,25 +14,7 @@ interface:
   agents: true
   history: true
 
-speech:
-  default:
-    stt:
-      browser:
-        language: 'pl-PL'
-    tts:
-      edge:
-        voice: 'Microsoft Marek Online (Natural) - Polish (Poland)'
-        rate: 1.2
-        cache: true
-
 endpoints:
-  agents:
-    enabled: true
-    usePermission: true
-    showSystemPrompt: true
-    tools:
-      - duckduckgo_search
-      - execute_code
   custom:
     - name: 'Vultr Cloud Inference'
       apiKey: '${VULTR_API_KEY}'
@@ -41,7 +23,7 @@ endpoints:
         default: ["llama-3.1-70b-instruct-fp8-gh200"]
       titleConvo: true
       titleModel: "llama-3.1-70b-instruct-fp8-gh200"
-      modelDisplayLabel: "Vultr Cloud Inference"          
+      modelDisplayLabel: "Vultr Cloud Inference"
 
 registration:
   socialLogin: false

@@ -20,6 +20,7 @@ export enum Tools {
   file_search = 'file_search',
   retrieval = 'retrieval',
   function = 'function',
+  seekstorm_search = 'seekstorm_search'
 }
 
 export enum EToolResources {

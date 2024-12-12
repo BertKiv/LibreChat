@@ -43,6 +43,11 @@ const validateTools = async (user, tools = []) => {
      * @param {string} toolName The identifier of the tool being validated.
      */
     const validateCredentials = async (authField, toolName) => {
+      // Skip auth check for Code Interpreter
+      if (toolName === Tools.execute_code) {
+        return;
+      }
+
       const fields = authField.split('||');
       for (const field of fields) {
         const adminAuth = process.env[field];
@@ -197,6 +202,10 @@ const loadTools = async ({
     'stable-diffusion': imageGenOptions,
   };
 
+  const fieldsMap = {
+    [Tools.execute_code]: [EnvVar.CODE_API_KEY, EnvVar.CODE_API_URL],
+  };
+
   const toolAuthFields = {};
 
   availableTools.forEach((tool) => {
@@ -215,10 +224,11 @@ const loadTools = async ({
       requestedTools[tool] = async () => {
         const authValues = await loadAuthValues({
           userId: user,
-          authFields: [EnvVar.CODE_API_KEY],
+          authFields: fieldsMap[tool],
         });
         const codeApiKey = authValues[EnvVar.CODE_API_KEY];
-        const { files, toolContext } = await primeCodeFiles(options, codeApiKey);
+        const codeApiUrl = authValues[EnvVar.CODE_API_URL];
+        const { files, toolContext } = await primeCodeFiles(options, codeApiKey, codeApiUrl);
         if (toolContext) {
           toolContextMap[tool] = toolContext;
         }
@@ -228,6 +238,7 @@ const loadTools = async ({
           ...authValues,
         });
         CodeExecutionTool.apiKey = codeApiKey;
+        CodeExecutionTool.apiUrl = codeApiUrl;
         return CodeExecutionTool;
       };
       continue;

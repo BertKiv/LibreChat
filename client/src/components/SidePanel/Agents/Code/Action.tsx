@@ -37,7 +37,7 @@ export default function Action({ authType = '', isToolAuthenticated = false }) {
   const isUserProvided = authType === AuthType.USER_PROVIDED;
 
   const handleCheckboxChange = (checked: boolean) => {
-    if (isToolAuthenticated) {
+    if (isToolAuthenticated || process.env.NODE_ENV === 'development') {
       setValue(AgentCapabilities.execute_code, checked, { shouldDirty: true });
     } else if (runCodeIsEnabled) {
       setValue(AgentCapabilities.execute_code, false, { shouldDirty: true });

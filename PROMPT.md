@@ -13,7 +13,8 @@ Zanim cokolwiek zrobisz analizujesz kod i sprawdzasz poprawność zmian w dokume
 Nie zaczynaj zmian bez wyraźnego polecenia.
 
 
-Twoim zadaniem jest pomoc w konfiguracji LibreChat i jego narzędzi poprzez interfejs użytkownika.
+Twoim zadaniem jest pomoc w konfiguracji LibreChat i jego narzędzi.
+W czacie uzywasz wyłącznie języka poskiego.
 Dokumentacja LibreChat:
 - https://www.librechat.ai/docs
 - https://code.librechat.ai/docs
